@@ -1,0 +1,150 @@
+PL/SQL
+#Largest of 3nums
+DECLARE
+    n1 int := &a;
+    n2 int := &b;
+    n3 int := &c;
+BEGIN
+    IF n1 >= n2 AND n1 >= n3 THEN
+        DBMS_OUTPUT.PUT_LINE('Largest Number = ' || n1);
+    ELSIF n2 >= n1 AND n2 >= n3 THEN
+        DBMS_OUTPUT.PUT_LINE('Largest Number = ' || n2);
+    ELSE
+        DBMS_OUTPUT.PUT_LINE('Largest Number = ' || n3);
+    END IF;
+END;
+
+Output:
+n1=2
+n2=7
+n3=1
+Largest Number=7
+
+#Multiplication
+DECLARE
+    num NUMBER := &n;
+BEGIN
+    IF MOD(num, 2) = 0 THEN
+        DBMS_OUTPUT.PUT_LINE(num || ' is Even Number');
+    ELSE
+        DBMS_OUTPUT.PUT_LINE(num || ' is Odd Number');
+    END IF;
+END;
+
+OUTPUT:
+num=5
+5 is Odd Number
+
+DECLARE
+    num NUMBER := &n;
+BEGIN
+    FOR i IN 1..10 LOOP
+        DBMS_OUTPUT.PUT_LINE(num || ' x ' || i || ' = ' || (num * i));
+    END LOOP;
+END;
+
+OUTPUT:
+num=5
+5 x 1 = 5
+5 x 2 = 10
+5 x 3 = 15
+5 x 4 = 20
+5 x 5 = 25
+5 x 6 = 30
+5 x 7 = 35
+5 x 8 = 40
+5 x 9 = 45
+5 x 10 = 50
+
+#Palindrome
+DECLARE
+    num NUMBER := 123;
+    temp NUMBER;
+    rev NUMBER := 0;
+    digit NUMBER;
+BEGIN
+    temp := num;
+
+    WHILE temp > 0 LOOP
+        digit := MOD(temp, 10);
+        rev := rev * 10 + digit;
+        temp := TRUNC(temp / 10);
+    END LOOP;
+
+    IF rev = num THEN
+        DBMS_OUTPUT.PUT_LINE(num || ' is a Palindrome Number');
+    ELSE
+        DBMS_OUTPUT.PUT_LINE(num || ' is Not a Palindrome Number');
+    END IF;
+END;
+
+OUTPUT:
+num=123
+123 is Not a Palindrome Number
+
+#factorial
+DECLARE
+    num NUMBER := &num;
+    fact NUMBER := 1;
+BEGIN
+    FOR i IN 1..num LOOP
+        fact := fact * i;
+
+    END LOOP;
+
+    DBMS_OUTPUT.PUT_LINE('Factorial = ' || fact);
+END;
+
+OUTPUT:
+num=5
+Factorial=120
+
+#fibanacci
+DECLARE
+    n NUMBER := &n;
+    a NUMBER := 0;
+    b NUMBER := 1;
+    c NUMBER;
+BEGIN
+    DBMS_OUTPUT.PUT_LINE('Fibonacci Series:');
+
+    FOR i IN 1..n LOOP
+        DBMS_OUTPUT.PUT_LINE(a);
+
+        c := a + b;
+        a := b;
+        b := c;
+    END LOOP;
+END;
+
+OUTPUT:
+n=5
+Fibonacci Series:
+0
+1
+2
+3
+4
+
+#prime or not
+DECLARE
+    n int := &n;  
+    flag int := 0;
+BEGIN
+    FOR i IN 2..n-1 LOOP
+        IF MOD(n, i) = 0 THEN
+            flag := 1;
+            EXIT;
+        END IF;
+    END LOOP;
+
+    IF flag = 0 AND n > 1 THEN
+        DBMS_OUTPUT.PUT_LINE(n || ' is a Prime Number');
+    ELSE
+        DBMS_OUTPUT.PUT_LINE(n || ' is Not a Prime Number');
+    END IF;
+END;
+
+OUTPUT:
+nn=8
+8 is not a Prime Number
